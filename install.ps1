@@ -34,11 +34,10 @@ Write-Host "Set XDG_CACHE_HOME as $env:XDG_CACHE_HOME"
 Write-Host "Set XDG_STATE_HOME as $env:XDG_STATE_HOME"
 
 # Create the '~/.config' directory if it does not exist
-$envVars = "XDG_CONFIG_HOME", "XDG_DATA_HOME", "XDG_CACHE_HOME", "XDG_STATE_HOME"
+$envVars = "$env:XDG_CONFIG_HOME", "$env:XDG_DATA_HOME", "$env:XDG_CACHE_HOME", "$env:XDG_STATE_HOME"
 foreach ($var in $envVars) {
-    $xdg_dir = Get-Content "env:$var"
-    if (!(Test-Path $xdg_dir)) {
-        New-Item -ItemType Directory -Force -Path $xdg_dir
+    if (!(Test-Path $var)) {
+        New-Item -ItemType Directory -Force -Path $var
     }
 }
 
@@ -59,7 +58,8 @@ scoop bucket add versions
 # Install external software using scoop
 # posh-git, gsudo, oh-my-posh
 $vals = `
-    "posh-git" `
+    "git" `
+    , "posh-git" `
     , "gsudo", `
     , "nvm" `
     , "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json" `
@@ -70,8 +70,8 @@ foreach ($val in $vals) {
     scoop install $val
 }
 
-# install nodejs
-nvm install stable --latest-npm
+# install nodejs (LTS)
+nvm install 18.18.0
 
 # ===========================================================
 # Info
