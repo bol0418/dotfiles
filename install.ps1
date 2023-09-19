@@ -58,13 +58,16 @@ scoop bucket add versions
 # Install external software using scoop
 # posh-git, gsudo, oh-my-posh
 $vals = `
-    "git" `
-    , "posh-git" `
+    "fd" `
+    , "git" `
     , "gsudo", `
-    , "nvm" `
     , "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json" `
     , "mingw" `
-    , "neovim"
+    , "neovim" `
+    , "nvm" `
+    , "posh-git" `
+    , "ripgrep" `
+    , "tree-sitter"
 
 foreach ($val in $vals) {
     scoop install $val
@@ -72,6 +75,9 @@ foreach ($val in $vals) {
 
 # install nodejs (LTS)
 nvm install 18.18.0
+
+# for neovim
+npm install -g neovim
 
 # ===========================================================
 # Info

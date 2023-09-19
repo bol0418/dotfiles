@@ -45,6 +45,28 @@ return {{
         require('config/telescope')
     end
 }, {
+    -- Finder
+    'nvim-telescope/telescope-frecency.nvim',
+    dependencies = {"kkharji/sqlite.lua"},
+    config = function()
+        require('config/telescope-frecency')
+    end
+}, {
+    -- Finder fzf
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'make',
+    config = function()
+        require('config/telescope-fzf-native')
+    end
+}, {
+    -- Filer
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
+    config = function()
+        require('config/telescope-file-browser')
+    end
+}, {
+    -- todo hightlighting
     "folke/todo-comments.nvim",
     dependencies = {"nvim-lua/plenary.nvim"},
     config = function()
