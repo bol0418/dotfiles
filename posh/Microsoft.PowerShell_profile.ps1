@@ -31,3 +31,6 @@ function which { (Get-Command $args).Definition }
 
 ## Set Tab Completion Similar to zsh
 Set-PSReadLineKeyHandler -Chord Tab -Function MenuComplete
+
+## Alias
+Set-Alias vim nvim
