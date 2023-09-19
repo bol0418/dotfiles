@@ -20,6 +20,10 @@ vim.bo.expandtab = true
 vim.bo.autoindent = true
 -- Set indentation one step back considering {} etc.
 vim.bo.smartindent = true
+-- Set tab width to 2 spaces.
+vim.opt.tabstop = 2
+-- Set indentation to 2 spaces.
+vim.opt.shiftwidth = 2
 
 -- Basic Visuals
 -- Enable true color support in the terminal
