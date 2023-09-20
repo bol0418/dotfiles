@@ -85,4 +85,99 @@ return {{
     config = function()
         require('config/telescope-memo')
     end
+}, {
+    -- cmp
+    "hrsh7th/nvim-cmp",
+    event = 'InsertEnter, CmdlineEnter',
+    config = function()
+        require('config/nvim-cmp')
+    end
+}, {
+    -- lsp
+    'neovim/nvim-lspconfig',
+    config = function()
+        require("config/nvim-lspconfig")
+    end
+}, {
+    -- lsp manager
+    "williamboman/mason.nvim",
+    event = {"WinNew", "WinLeave", "BufRead"},
+    config = function()
+        require("config/mason")
+    end
+}, {
+    -- lsp manger config
+    'williamboman/mason-lspconfig.nvim',
+    event = "BufRead",
+    config = function()
+        require("config/mason-lspconfig")
+    end
+}, {
+    -- lsp to cmp
+    'hrsh7th/cmp-nvim-lsp',
+    event = 'InsertEnter',
+    config = function()
+        require("config/cmp-nvim-lsp")
+    end
+}, {
+    -- cmp from buffer
+    'hrsh7th/cmp-buffer',
+    event = 'InsertEnter',
+    config = function()
+        require("config/cmp-buffer")
+    end
+}, {
+    -- path cmp
+    'hrsh7th/cmp-path',
+    event = 'InsertEnter',
+    config = function()
+        require("config/cmp-path")
+    end
+}, {
+    -- change lsp view
+    "onsails/lspkind.nvim",
+    event = 'InsertEnter',
+    config = function()
+        require("config/lspkind")
+    end
+}, {
+    -- snippet to cmp
+    "hrsh7th/cmp-vsnip",
+    config = function()
+        require("config/cmp-vsnip")
+    end
+}, {
+    -- cmp emojis
+    "hrsh7th/cmp-emoji",
+    config = function()
+        require("config/cmp-emoji")
+    end
+}, {
+    -- snippet feature
+    "hrsh7th/vim-vsnip",
+    event = 'InsertEnter',
+    config = function()
+        require("config/vim-vsnip")
+    end
+}, {
+    -- snippet integration
+    "hrsh7th/vim-vsnip-integ",
+    event = 'InsertEnter',
+    config = function()
+        require("config/vim-vsnip-integ")
+    end
+}, {
+    -- snippet collections
+    "rafamadriz/friendly-snippets",
+    event = 'InsertEnter',
+    config = function()
+        require("config/friendly-snippets")
+    end
+}, {
+    -- insert bracket pair
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = function()
+        require("config/nvim-autopairs")
+    end
 }}
