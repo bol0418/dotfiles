@@ -8,9 +8,9 @@ vim.g.memolist_fzf = 1
 vim.api.nvim_set_keymap('n', '<leader>mn', '<cmd>MemoNew<cr>', {
     desc = "Create a new memo"
 })
-vim.api.nvim_set_keymap('n', '<leader>ml', '<cmd>Telescope memo list<cr>', {
+vim.api.nvim_set_keymap('n', '<leader>ml', '<cmd>Telescope find_files cwd=' .. home .. '/memo' .. '<cr>', {
     desc = "List memo"
 })
-vim.api.nvim_set_keymap('n', '<leader>mg', '<cmd>Telescope memo live_grep<cr>', {
+vim.api.nvim_set_keymap('n', '<leader>mg', '<cmd>Telescope live_grep cwd=' .. home .. '/memo' .. '<cr>', {
     desc = "Grep memo"
 })

@@ -69,7 +69,8 @@ scoop bucket add versions
 
 # Install external software using scoop
 $vals = `
-    "fd" `
+    "deno" `
+    , "fd" `
     , "fzf" `
     , "git" `
     , "go" `

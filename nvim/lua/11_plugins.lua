@@ -3,6 +3,7 @@ return {{
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
+    event = 'VeryLazy',
     config = function()
         require('config/tokyonight')
     end
@@ -10,12 +11,14 @@ return {{
     -- status line
     'nvim-lualine/lualine.nvim',
     dependencies = {'nvim-tree/nvim-web-devicons'},
+    event = 'VeryLazy',
     config = function()
         require('config/lualine')
     end
 }, {
     -- git status
     'lewis6991/gitsigns.nvim',
+    event = {'BufNewFile, BufRead'},
     config = function()
         require('gitsigns').setup()
     end
@@ -41,6 +44,7 @@ return {{
     'nvim-telescope/telescope.nvim',
     tag = '0.1.3',
     dependencies = {'nvim-lua/plenary.nvim'},
+    cmd = 'Telescope',
     config = function()
         require('config/telescope')
     end
@@ -66,6 +70,29 @@ return {{
         require('config/telescope-file-browser')
     end
 }, {
+    -- search kanji with romaji
+    "Allianaab2m/telescope-kensaku.nvim",
+    dependencies = {"nvim-telescope/telescope.nvim", "vim-denops/denops.vim", "lambdalisue/kensaku.vim"},
+    config = function()
+        require('config/telescope-kensaku')
+    end
+}, {
+    -- search with romaji
+    "lambdalisue/kensaku-command.vim",
+    dependencies = "lambdalisue/kensaku-command.vim",
+    event = "CmdlineEnter",
+    config = function()
+        require('config/kensaku-command')
+    end
+}, {
+    -- search with romaji
+    "lambdalisue/kensaku-search.vim",
+    dependencies = "lambdalisue/kensaku-command.vim",
+    event = "CmdlineEnter",
+    config = function()
+        require('config/kensaku-search')
+    end
+}, {
     -- todo hightlighting
     "folke/todo-comments.nvim",
     dependencies = {"nvim-lua/plenary.nvim"},
@@ -78,12 +105,6 @@ return {{
     dependencies = {'nvim-telescope/telescope.nvim', 'delphinus/telescope-memo.nvim'},
     config = function()
         require('config/memolist')
-    end
-}, {
-    -- Telescope for memolist plugin
-    'delphinus/telescope-memo.nvim',
-    config = function()
-        require('config/telescope-memo')
     end
 }, {
     -- cmp
@@ -149,8 +170,16 @@ return {{
 }, {
     -- cmp emojis
     "hrsh7th/cmp-emoji",
+    event = 'InsertEnter',
     config = function()
         require("config/cmp-emoji")
+    end
+}, {
+    -- cmp latex
+    "kdheepak/cmp-latex-symbols",
+    event = 'InsertEnter',
+    config = function()
+        require("config/cmp-latex-symbols")
     end
 }, {
     -- snippet feature

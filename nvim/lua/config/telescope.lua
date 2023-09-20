@@ -13,7 +13,7 @@ require('telescope').setup({
         },
         file_ignore_patterns = {"^.git/", "^.cache/"},
         vimgrep_arguments = {"rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column",
-                             "--smart-case", "-hidden"},
+                             "--smart-case", "-uu"},
         pickers = {
             find_files = {
                 hidden = true
