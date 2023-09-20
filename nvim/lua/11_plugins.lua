@@ -72,4 +72,17 @@ return {{
     config = function()
         require('config/todo-comments')
     end
+}, {
+    -- memolist
+    "glidenote/memolist.vim",
+    dependencies = {'nvim-telescope/telescope.nvim', 'delphinus/telescope-memo.nvim'},
+    config = function()
+        require('config/memolist')
+    end
+}, {
+    -- Telescope for memolist plugin
+    'delphinus/telescope-memo.nvim',
+    config = function()
+        require('config/telescope-memo')
+    end
 }}

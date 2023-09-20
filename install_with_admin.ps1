@@ -22,4 +22,17 @@ New-Item `
     -Target "$scriptDir\nvim" `
     -Force
 
+## memo
+New-Item `
+    -ItemType SymbolicLink `
+    -Path "$env:USERPROFILE\AppData\Roaming\memo\config.toml" `
+    -Target "$scriptDir\memo\config.toml" `
+    -Force
+
+New-Item `
+    -ItemType SymbolicLink `
+    -Path "$env:XDG_CONFIG_HOME\memo" `
+    -Target "$scriptDir\memo" `
+    -Force
+
 Write-Host "Files have been symlinked successfully."

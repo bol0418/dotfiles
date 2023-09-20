@@ -5,16 +5,13 @@ $OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = New-Obj
 # Set environment variable persistently for User
 # ===========================================================
 
-# When configured, it allows you to use what's under ~/.config.
-# !! XDG_STATE_HOME needs to be the same as HOME !!
-
 [Environment]::SetEnvironmentVariable(
     "XDG_CONFIG_HOME", "$env:USERPROFILE\.config", "User"
 )
 Write-Host "Set XDG_CONFIG_HOME as $env:XDG_CONFIG_HOME"
 
 [Environment]::SetEnvironmentVariable(
-    "HOME", "$env:USERPROFILE\.config", "User"
+    "HOME", "$env:USERPROFILE", "User"
 )
 Write-Host "Set HOME as $env:HOME"
 
@@ -33,8 +30,23 @@ Write-Host "Set XDG_CACHE_HOME as $env:XDG_CACHE_HOME"
 )
 Write-Host "Set XDG_STATE_HOME as $env:XDG_STATE_HOME"
 
-# Create the '~/.config' directory if it does not exist
-$envVars = "$env:XDG_CONFIG_HOME", "$env:XDG_DATA_HOME", "$env:XDG_CACHE_HOME", "$env:XDG_STATE_HOME"
+[Environment]::SetEnvironmentVariable(
+    "GOPATH", "$env:USERPROFILE\go", "User"
+)
+Write-Host "Set GOPATH as $env:GOPATH"
+
+$currentPath = [Environment]::GetEnvironmentVariable("PATH", "User")
+if (-not $currentPath.Contains("%GOPATH%\bin")) {
+    $currentPath += ";%GOPATH%\bin;"
+}
+[Environment]::SetEnvironmentVariable(
+    "PATH", $currentPath, "User"
+)
+Write-Host "Set PATH as $env:PATH"
+
+
+# Create directory if it does not exist
+$envVars = "$env:XDG_CONFIG_HOME", "$env:XDG_DATA_HOME", "$env:XDG_CACHE_HOME", "$env:XDG_STATE_HOME", "$env:HOME\memo"
 foreach ($var in $envVars) {
     if (!(Test-Path $var)) {
         New-Item -ItemType Directory -Force -Path $var
@@ -56,10 +68,11 @@ if (!(Get-Command scoop)) {
 scoop bucket add versions
 
 # Install external software using scoop
-# posh-git, gsudo, oh-my-posh
 $vals = `
     "fd" `
+    , "fzf" `
     , "git" `
+    , "go" `
     , "gsudo", `
     , "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json" `
     , "mingw" `
@@ -71,7 +84,11 @@ $vals = `
 
 foreach ($val in $vals) {
     scoop install $val
+    scoop update $val
 }
+
+# install mattn/memo https://github.com/mattn/memo
+go install github.com/mattn/memo@latest
 
 # install nodejs (LTS)
 nvm install 18.18.0
