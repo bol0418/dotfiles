@@ -12,6 +12,10 @@ cmp.setup({
         name = "buffer"
     }, {
         name = "path"
+    }, {
+        name = "emoji"
+    }, {
+        name = "vsnip"
     }},
     mapping = cmp.mapping.preset.insert({
         ["<C-p>"] = cmp.mapping.select_prev_item(),
