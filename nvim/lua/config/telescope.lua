@@ -1,6 +1,6 @@
 require('telescope').setup({
     defaults = {
-        layout_strategy = 'vertical',
+        layout_strategy = 'flex',
         layout_config = {},
         preview = {
             treesitter = false
@@ -25,13 +25,41 @@ require('telescope').setup({
 
 local builtin = require('telescope.builtin')
 
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set("n", "<leader>fo", builtin.oldfiles, {})
+vim.keymap.set("n", "<leader>fk", builtin.keymaps, {
+    desc = "Show keymaps"
+})
 
-vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
-vim.keymap.set("n", "<leader>gl", builtin.git_commits, {})
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {
+    desc = "Telescope find files"
+})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {
+    desc = "Telescope live grep"
+})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {
+    desc = "Telescope show buffers"
+})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {
+    desc = "Telescope helps"
+})
+vim.keymap.set("n", "<leader>fo", builtin.oldfiles, {
+    desc = "Telescope recent files"
+})
 
-vim.keymap.set("n", "<Leader>fn", ":Telescope find_files cwd=~/.config/nvim<CR>", {})
+vim.keymap.set("n", "<leader>gs", builtin.git_status, {
+    desc = "Telescope git status"
+})
+vim.keymap.set("n", "<leader>gl", builtin.git_commits, {
+    desc = "Telescope git commits"
+})
+
+-- view nvim config directory
+if vim.loop.os_uname().sysname == 'Windows_NT' then
+    home = os.getenv "USERPROFILE"
+else
+    home = os.getenv "HOME"
+end
+
+local cmd = ":Telescope find_files cwd=" .. home .. "/.config/nvim<CR>"
+vim.keymap.set('n', '<leader>fn', cmd, {
+    desc = "Telescope show nvim files"
+})
