@@ -1,6 +1,6 @@
 ---
 title: {{_title_}}
-title: []
+alias: []
 date: {{_date_}}
 tags: [{{_tags_}}]
 ---

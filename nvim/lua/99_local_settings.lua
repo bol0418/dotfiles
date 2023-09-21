@@ -1,1 +1,2 @@
 -- local settings
+-- git update-index --skip-worktree path_this_file

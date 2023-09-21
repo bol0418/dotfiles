@@ -1,4 +1,41 @@
-return {{
+local basic_plugins = {{
+    -- toggle comment
+    'numToStr/Comment.nvim',
+    config = function()
+        require('config/comment')
+    end
+}, {
+    -- search with romaji
+    "lambdalisue/kensaku-command.vim",
+    dependencies = {"lambdalisue/kensaku-command.vim", "vim-denops/denops.vim", "lambdalisue/kensaku.vim"},
+    event = "CmdlineEnter",
+    config = function()
+        require('config/kensaku-command')
+    end
+}, {
+    -- search with romaji
+    "lambdalisue/kensaku-search.vim",
+    dependencies = {"lambdalisue/kensaku-command.vim", "vim-denops/denops.vim", "lambdalisue/kensaku.vim"},
+    event = "CmdlineEnter",
+    config = function()
+        require('config/kensaku-search')
+    end
+}, {
+    -- todo hightlighting
+    "folke/todo-comments.nvim",
+    dependencies = {"nvim-lua/plenary.nvim"},
+    config = function()
+        require('config/todo-comments')
+    end
+}, {
+    -- indent guide
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+        require('config/indent-blankline')
+    end
+}}
+
+local rich_plugins = {{
     -- colorsheme
     "folke/tokyonight.nvim",
     lazy = false,
@@ -21,11 +58,6 @@ return {{
     event = {'BufNewFile, BufRead'},
     config = function()
         require('gitsigns').setup()
-    end
-}, { -- toggle comment
-    'numToStr/Comment.nvim',
-    config = function()
-        require('config/comment')
     end
 }, {
     -- highlighting
@@ -75,29 +107,6 @@ return {{
     dependencies = {"nvim-telescope/telescope.nvim", "vim-denops/denops.vim", "lambdalisue/kensaku.vim"},
     config = function()
         require('config/telescope-kensaku')
-    end
-}, {
-    -- search with romaji
-    "lambdalisue/kensaku-command.vim",
-    dependencies = "lambdalisue/kensaku-command.vim",
-    event = "CmdlineEnter",
-    config = function()
-        require('config/kensaku-command')
-    end
-}, {
-    -- search with romaji
-    "lambdalisue/kensaku-search.vim",
-    dependencies = "lambdalisue/kensaku-command.vim",
-    event = "CmdlineEnter",
-    config = function()
-        require('config/kensaku-search')
-    end
-}, {
-    -- todo hightlighting
-    "folke/todo-comments.nvim",
-    dependencies = {"nvim-lua/plenary.nvim"},
-    config = function()
-        require('config/todo-comments')
     end
 }, {
     -- memolist
@@ -210,3 +219,18 @@ return {{
         require("config/nvim-autopairs")
     end
 }}
+
+-- concat function
+function concat(t1, t2)
+    for i, v in ipairs(t2) do
+        table.insert(t1, v)
+    end
+    return t1
+end
+
+if vim.g.vscode then
+    return {basic_plugins}
+else
+    return concat(basic_plugins, rich_plugins)
+end
+
