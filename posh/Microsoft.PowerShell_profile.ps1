@@ -15,7 +15,7 @@ Set-PSReadLineOption -PredictionSource History
 # --------------------
 # Initialize oh-my-posh
 # --------------------
-oh-my-posh init pwsh --config $env:POSH_THEMES_PATH/emodipt.omp.json | Invoke-Expression
+oh-my-posh init pwsh --config $env:POSH_THEMES_PATH/robbyrussell.omp.json | Invoke-Expression
 
 # --------------------
 # Import git complements
