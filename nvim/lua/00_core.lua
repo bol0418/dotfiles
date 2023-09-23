@@ -35,7 +35,7 @@ vim.opt.showcmd = true
 -- Set the height of the command line
 vim.opt.cmdheight = 2
 -- Control how the status line is displayed
-vim.opt.laststatus = 2
+vim.opt.laststatus = 3
 -- Make wrapped lines visually indented
 vim.opt.breakindent = true
 --  Enable line wrapping
