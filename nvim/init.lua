@@ -1,6 +1,13 @@
-require("00_core")
-require("01_keybind")
+require("base")
+require("keymaps")
+require("autocmd")
+require("lsp")
 
-require("10_lazy_nvim")
-
-require("99_local_settings")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    vim.fn.system({"git", "clone", "--filter=blob:none",
+                   "https://github.com/folke/lazy.nvim.git", "--branch=stable", -- latest stable release
+                   lazypath})
+end
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup("plugins")
