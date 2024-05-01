@@ -1,8 +1,0 @@
----
-title: {{_title_}}
-alias: []
-date: {{_date_}}
-tags: [{{_tags_}}]
----
-
-# {{_title_}}
