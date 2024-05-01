@@ -22,17 +22,18 @@ New-Item `
     -Target "$scriptDir\nvim" `
     -Force
 
-## memo
+## markdownlint
 New-Item `
     -ItemType SymbolicLink `
-    -Path "$env:USERPROFILE\AppData\Roaming\memo\config.toml" `
-    -Target "$scriptDir\memo\config.toml" `
+    -Path "$env:USERPROFILE\.config\.markdownlint.json" `
+    -Target "$scriptDir\.markdownlint.json" `
     -Force
 
+## wezterm
 New-Item `
     -ItemType SymbolicLink `
-    -Path "$env:XDG_CONFIG_HOME\memo" `
-    -Target "$scriptDir\memo" `
+    -Path "$env:USERPROFILE\.config\.wezterm.lua" `
+    -Target "$scriptDir\.wezterm.lua" `
     -Force
 
 Write-Host "Files have been symlinked successfully."

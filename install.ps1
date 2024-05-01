@@ -46,7 +46,7 @@ Write-Host "Set PATH as $env:PATH"
 
 
 # Create directory if it does not exist
-$envVars = "$env:XDG_CONFIG_HOME", "$env:XDG_DATA_HOME", "$env:XDG_CACHE_HOME", "$env:XDG_STATE_HOME", "$env:HOME\memo"
+$envVars = "$env:XDG_CONFIG_HOME", "$env:XDG_DATA_HOME", "$env:XDG_CACHE_HOME", "$env:XDG_STATE_HOME"
 foreach ($var in $envVars) {
     if (!(Test-Path $var)) {
         New-Item -ItemType Directory -Force -Path $var
@@ -87,9 +87,6 @@ foreach ($val in $vals) {
     scoop install $val
     scoop update $val
 }
-
-# install mattn/memo https://github.com/mattn/memo
-go install github.com/mattn/memo@latest
 
 # install nodejs (LTS)
 nvm install 18.18.0
