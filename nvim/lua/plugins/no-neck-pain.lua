@@ -1,18 +1,20 @@
 if not vim.g.vscode then
-    return ({
+    return {
         "shortcuts/no-neck-pain.nvim",
         version = "*",
         config = function()
             require("no-neck-pain").setup({
-                width = 90
+                width = 90,
             })
         end,
-        keys = { {
-            "<leader>np",
-            "<cmd>NoNeckPain<cr>",
-            desc = "Toggle No Neck Pain"
-        } }
-    })
+        keys = {
+            {
+                "<leader>np",
+                "<cmd>NoNeckPain<cr>",
+                desc = "Toggle No Neck Pain",
+            },
+        },
+    }
 else
     return {}
 end

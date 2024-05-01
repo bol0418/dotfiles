@@ -12,7 +12,7 @@ return {
                 sticky = true,
                 ignore = nil,
             })
-        end
+        end,
     },
     {
         "lukas-reineke/indent-blankline.nvim",
@@ -27,10 +27,10 @@ return {
                 indent = { highlight = highlight, char = "" },
                 whitespace = {
                     highlight = highlight,
-                    remove_blankline_trail = false
+                    remove_blankline_trail = false,
                 },
-                scope = { enabled = false }
+                scope = { enabled = false },
             })
-        end
+        end,
     },
 }
